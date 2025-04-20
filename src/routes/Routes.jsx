@@ -1,10 +1,16 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
 import Layout from "../layout/layout";
 import AllTouristSpots from "../pages/AllTouristSpots";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
-import App from "../App";
+import Login from "../pages/Login";
+import ViewDetails from "../pages/ViewDetails";
+import AddTouristSpot from "../pages/AddTouristSpot";
+import MyList from "../pages/MyList";
+import Register from "../pages/Register";
+import UpdateTouristSpot from "../pages/UpdateTouristSpot";
 
 const Routes = createBrowserRouter([
   {
@@ -20,8 +26,32 @@ const Routes = createBrowserRouter([
         ],
       },
       {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
         path: "tourist-spots", // 👈 Custom route
         element: <AllTouristSpots />,
+      },
+      {
+        path: "tourist-spots/:id", // 👈 Custom route
+        element: <ViewDetails />,
+      },
+      {
+        path: "add-tourist-spot", // 👈 Custom route
+        element: <AddTouristSpot />,
+      },
+      {
+        path: "add-tourist-spot", // 👈 Custom route
+        element: <UpdateTouristSpot />,
+      },
+      {
+        path: "my-list", // 👈 Custom route
+        element: <MyList />,
       },
     ],
   },
