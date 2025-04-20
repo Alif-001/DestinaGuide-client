@@ -1,15 +1,19 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import "./App.css";
+
+import BannerCarousel from "./components/Banner";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <>
+      
       <NavBar />
-      <h1 className="text-red-500">DestinaGuide</h1>
-      <Outlet />
+      <div className="container ">
+        <BannerCarousel />
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

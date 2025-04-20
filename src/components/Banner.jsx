@@ -30,7 +30,7 @@ const slides = [
 
 const BannerCarousel = () => {
   return (
-    <div className="w-full h-[80vh] overflow-hidden">
+    <div className="w-full h-[80vh] overflow-hidden rounded-md">
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
