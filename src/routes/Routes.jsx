@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Layout from "../layout/layout";
-import AllTouristSpots from "../pages/AllTouristSpots";
+import AllTouristSpots,{loader as allTouristSpotsLoader} from "../pages/AllTouristSpots";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import Login from "../pages/Login";
@@ -36,6 +36,7 @@ const Routes = createBrowserRouter([
       {
         path: "tourist-spots", // 👈 Custom route
         element: <AllTouristSpots />,
+        loader: allTouristSpotsLoader,
       },
       {
         path: "tourist-spots/:id", // 👈 Custom route

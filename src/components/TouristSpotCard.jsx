@@ -1,12 +1,50 @@
+import React from "react";
 
-import React from 'react';
+const TouristSpotCard = ({ spot }) => {
+  const {
+    image,
+    spotName,
+    country,
+    location,
+    description,
+    averageCost,
+    season,
+    travelTime,
+    visitorsPerYear,
+  } = spot;
 
-const TouristSpotCard = () => {
-    return (
-        <div>
-            <h1>TouristSpotCard</h1>
+  return (
+    <>
+      <div className="  bg-base-400 backdrop-blur-lg shadow-xl rounded-xl overflow-hidden transform hover:scale-102 transition-all duration-300 ease-in-out  mb-8 border border-gray-200 ">
+        <img
+          src={image}
+          alt={spotName}
+          className="w-full h-80 object-cover rounded-t-3xl hover:scale-105 transition-all duration-300 ease-in-out"
+        />
+        <div className="p-6 space-y-4">
+          <h2 className="text-2xl font-extrabold text-gray-300">{spotName}</h2>
+          <p className="text-gray-500 text-sm">
+            📍 {location}, {country}
+          </p>
+          <p className="text-gray-300 text-base line-clamp-3">{description}</p>
+          <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-400">
+            <div className="flex items-center gap-1">
+              💰 <span>${averageCost.toLocaleString()}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              🌤️ <span>{season}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              🛫 <span>{travelTime}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              👥 <span>{visitorsPerYear.toLocaleString()} visitors</span>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </>
+  );
 };
 
 export default TouristSpotCard;
