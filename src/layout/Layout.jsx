@@ -7,9 +7,11 @@ const Layout = () => {
   return (
     <>
       <NavBar />
-
-      <Outlet />
-
+      <div className="min-h-screen  flex flex-col bg-base-100">
+        <div className="flex-grow flex  ">
+          <Outlet />
+        </div>
+      </div>
       <Footer />
     </>
   );
