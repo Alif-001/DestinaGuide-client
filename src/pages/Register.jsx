@@ -72,6 +72,7 @@ export default function Register() {
         )}
 
         {method === "email" && (
+          <>
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5 mt-4">
             <input
               type="email"
@@ -96,6 +97,8 @@ export default function Register() {
             >
               Register
             </button>
+            
+            </form>
 
             <div className="relative my-4">
               <div className="absolute inset-0 flex items-center">
@@ -127,7 +130,8 @@ export default function Register() {
               <SiApple />
               Continue with Apple
             </button>
-          </form>
+            </>
+          
         )}
 
         <p className="text-xs text-gray-500 mt-6">

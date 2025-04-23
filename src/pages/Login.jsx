@@ -70,25 +70,30 @@ export default function Login() {
         )}
 
         {method === "email" && (
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-5 mt-4">
-            <input
-              type="email"
-              placeholder="Email address"
-              className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
-              required
-            />
-            <button
-              type="submit"
-              className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-semibold transition-all"
+          <>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="space-y-5 mt-4"
             >
-              Log In
-            </button>
+              <input
+                type="email"
+                placeholder="Email address"
+                className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
+                required
+              />
+              <button
+                type="submit"
+                className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-semibold transition-all"
+              >
+                Log In
+              </button>
+            </form>
 
             <div className="relative my-4">
               <div className="absolute inset-0 flex items-center">
@@ -120,7 +125,7 @@ export default function Login() {
               <SiApple />
               Continue with Apple
             </button>
-          </form>
+          </>
         )}
 
         <p className="text-xs text-gray-500 mt-6">
