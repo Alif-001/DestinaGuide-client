@@ -13,7 +13,7 @@ export default function Register() {
 
   return (
     <div className=" flex  items-center justify-center  container my-20 ">
-      <div className="my-20  max-w-lg  p-10 bg-neutral-900 rounded-3xl shadow-2xl text-center animate-fade-in">
+      <div className="unique-form-size p-20 bg-neutral-900 rounded-3xl shadow-2xl text-center animate-fade-in">
         <div className="mb-5">
           <img
             src={logo}

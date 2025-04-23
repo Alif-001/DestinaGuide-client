@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-
-
 @layer utilities {
   .container {
     width: 100%;
@@ -29,4 +27,8 @@
   }
 }
 
-
+/* Updated class name to avoid conflicts */
+.unique-form-size {
+  width: 600px; /* Set a fixed width */
+  height: auto; /* Allow height to adjust based on content */
+}

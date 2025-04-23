@@ -9,7 +9,7 @@ export default function Login() {
 
   return (
     <div className="flex items-center justify-center container my-20">
-      <div className="my-20 max-w-lg p-10 bg-neutral-900 rounded-3xl shadow-2xl text-center animate-fade-in">
+      <div className="unique-form-size p-20 bg-neutral-900 rounded-3xl shadow-2xl text-center animate-fade-in">
         <div className="mb-5">
           <img
             src={logo}
@@ -22,7 +22,7 @@ export default function Login() {
           <p className="text-sm text-gray-400 mt-1">
             Don't have an account?{" "}
             <Link to="/register" className="text-purple-400 hover:underline">
-              Sign up
+              Register
             </Link>
           </p>
         </div>
@@ -104,27 +104,29 @@ export default function Login() {
               </div>
             </div>
 
-            <button
-              onClick={() => {
-                /* Google login */
-              }}
-              className="w-full py-3 border border-gray-700 hover:border-purple-400 rounded-full flex items-center justify-center gap-3 text-gray-300"
-            >
-              <div className="bg-white rounded-full p-1">
-                <FcGoogle />
-              </div>
-              Continue with Google
-            </button>
+            <div className="space-y-5">
+              <button
+                onClick={() => {
+                  /* Google login */
+                }}
+                className="w-full py-3 border border-gray-700 hover:border-purple-400 rounded-full flex items-center justify-center gap-3 text-gray-300"
+              >
+                <div className="bg-white rounded-full p-1">
+                  <FcGoogle />
+                </div>
+                Continue with Google
+              </button>
 
-            <button
-              onClick={() => {
-                /* Apple login */
-              }}
-              className="w-full py-3 border border-gray-700 hover:border-gray-500 rounded-full flex items-center justify-center gap-3 text-gray-300"
-            >
-              <SiApple />
-              Continue with Apple
-            </button>
+              <button
+                onClick={() => {
+                  /* Apple login */
+                }}
+                className="w-full py-3 border border-gray-700 hover:border-gray-500 rounded-full flex items-center justify-center gap-3 text-gray-300"
+              >
+                <SiApple />
+                Continue with Apple
+              </button>
+            </div>
           </>
         )}
 
