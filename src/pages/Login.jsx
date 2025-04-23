@@ -3,9 +3,11 @@ import { FcGoogle } from "react-icons/fc";
 import { SiApple } from "react-icons/si";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/LOGO.png";
+import useLogin from "../utils/useLogin";
 
 export default function Login() {
   const [method, setMethod] = useState("initial"); // 'initial' | 'email'
+  const { handleLogin, formErrors } = useLogin(); // Assuming you have a custom hook for login
 
   return (
     <div className="flex items-center justify-center container my-20">
@@ -71,22 +73,29 @@ export default function Login() {
 
         {method === "email" && (
           <>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="space-y-5 mt-4"
-            >
+            <form onSubmit={handleLogin} className="space-y-5 mt-4">
               <input
                 type="email"
+                name="email"
                 placeholder="Email address"
                 className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
                 required
               />
+              {formErrors.email && (
+                <p className="text-sm text-red-500 mt-2">{formErrors.email}</p>
+              )}
               <input
                 type="password"
+                name="password"
                 placeholder="Password"
                 className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
                 required
               />
+              {formErrors.password && (
+                <p className="text-sm text-red-500 mt-2">
+                  {formErrors.password}
+                </p>
+              )}
               <button
                 type="submit"
                 className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-semibold transition-all"
