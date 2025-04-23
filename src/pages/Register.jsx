@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+
 import { FcGoogle } from "react-icons/fc";
 import { SiApple } from "react-icons/si";
 
 import { Link } from "react-router-dom";
 import logo from "../assets/images/LOGO.png";
+import { useRegister } from "../utils/useRegister";
 
 export default function Register() {
   const [method, setMethod] = useState("initial"); // 'initial' | 'email'
+  const { formErrors, handleRegister } = useRegister();
 
   return (
     <div className=" flex  items-center justify-center  container my-20 ">
@@ -73,31 +76,61 @@ export default function Register() {
 
         {method === "email" && (
           <>
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-5 mt-4">
-            <input
-              type="email"
-              placeholder="Email address"
-              className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
-              required
-            />
-            <input
-              type="text"
-              placeholder="Your nickname"
-              className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
-            />
-            <button
-              type="submit"
-              className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-semibold transition-all"
-            >
-              Register
-            </button>
-            
+            <form onSubmit={handleRegister} className="space-y-5 mt-4">
+              {/* Email Input */}
+              <div>
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  name="email"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
+                  required
+                />
+                {formErrors.email && (
+                  <p className="text-sm text-red-500 mt-2">
+                    {formErrors.email}
+                  </p>
+                )}
+              </div>
+
+              {/* Password Input */}
+              <div>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  autoComplete="off"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
+                  required
+                />
+                {formErrors.password && (
+                  <p className="text-sm text-red-500 mt-2">
+                    {formErrors.password}
+                  </p>
+                )}
+              </div>
+
+              {/* Nickname Input */}
+              <div>
+                <input
+                  type="text"
+                  placeholder="Your nickname"
+                  name="nickname"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-gray-700 text-gray-200 placeholder-gray-500 rounded-full focus:ring-2 focus:ring-purple-500"
+                />
+                {formErrors.nickname && (
+                  <p className="text-sm text-red-500 mt-2">
+                    {formErrors.nickname}
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-semibold transition-all"
+              >
+                Register
+              </button>
             </form>
 
             <div className="relative my-4">
@@ -109,29 +142,30 @@ export default function Register() {
               </div>
             </div>
 
-            <button
-              onClick={() => {
-                /* Google signup */
-              }}
-              className="w-full py-3 border border-gray-700 hover:border-purple-400 rounded-full flex items-center justify-center gap-3 text-gray-300"
-            >
-              <div className="bg-white rounded-full p-1">
-                <FcGoogle />
-              </div>
-              Continue with Google
-            </button>
+            <div className="space-y-5">
+              <button
+                onClick={() => {
+                  /* Google signup */
+                }}
+                className="w-full py-3 border border-gray-700 hover:border-purple-400 rounded-full flex items-center justify-center gap-3 text-gray-300"
+              >
+                <div className="bg-white rounded-full p-1">
+                  <FcGoogle />
+                </div>
+                Continue with Google
+              </button>
 
-            <button
-              onClick={() => {
-                /* Apple signup */
-              }}
-              className="w-full py-3 border border-gray-700 hover:border-gray-500 rounded-full flex items-center justify-center gap-3 text-gray-300"
-            >
-              <SiApple />
-              Continue with Apple
-            </button>
-            </>
-          
+              <button
+                onClick={() => {
+                  /* Apple signup */
+                }}
+                className="w-full py-3 border border-gray-700 hover:border-gray-500 rounded-full flex items-center justify-center gap-3 text-gray-300"
+              >
+                <SiApple />
+                Continue with Apple
+              </button>
+            </div>
+          </>
         )}
 
         <p className="text-xs text-gray-500 mt-6">
