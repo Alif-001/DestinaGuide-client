@@ -30,26 +30,26 @@ const slides = [
 
 const BannerCarousel = () => {
   return (
-    <div className="w-full h-[80vh] overflow-hidden rounded-md">
+    // Responsive height with maximum caps on larger screens
+    <div className="w-full h-[50vh] md:h-[80vh] lg:h-[80vh] lg:max-h-[600px] xl:max-h-[700px] overflow-hidden rounded-md">
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
         fadeEffect={{ crossFade: true }}
         loop={true}
         autoplay={{
-          delay: 6000, // Wait time between slides (ms)
+          delay: 6000,
           disableOnInteraction: false,
-
           pauseOnMouseEnter: true,
         }}
-        speed={1000} // Transition duration (ms)
+        speed={1000}
         pagination={{ clickable: true }}
         navigation
-        className="relative"
+        className="relative h-full"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative h-[70vh] w-full">
+            <div className="relative w-full h-full">
               {/* Full image */}
               <img
                 src={slide.imageUrl}
@@ -57,11 +57,11 @@ const BannerCarousel = () => {
                 className="absolute inset-0 w-full h-full object-cover z-0"
               />
 
-              {/* Full overlay */}
+              {/* Overlay */}
               <div className="absolute inset-0 bg-black/60 z-10" />
 
               {/* Text + Button */}
-              <div className="relative z-20 h-full w-full flex flex-col items-center justify-center text-white text-center px-4">
+              <div className="relative z-20 flex flex-col items-center justify-center text-white text-center h-full px-4">
                 <h2 className="text-3xl md:text-5xl font-bold drop-shadow-lg transition-all duration-700">
                   {slide.title}
                 </h2>
@@ -78,7 +78,14 @@ const BannerCarousel = () => {
       </Swiper>
 
       {/* Custom arrow + bullet styles */}
-      <style jsx>{`
+      <style>{`
+      /* Hide arrows on md screens and smaller */
+        @media (max-width: 768px) {
+          .swiper-button-prev,
+          .swiper-button-next {
+            display: none;
+          }
+        }
         .swiper-button-prev,
         .swiper-button-next {
           color: #d1d5db;
