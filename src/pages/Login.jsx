@@ -3,11 +3,13 @@ import { FcGoogle } from "react-icons/fc";
 import { SiApple } from "react-icons/si";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/LOGO.png";
+import useComingSoon from "../hooks/useComingSoon";
 import useLogin from "../utils/useLogin";
 
 export default function Login() {
   const [method, setMethod] = useState("initial"); // 'initial' | 'email'
   const { handleLogin, formErrors } = useLogin(); // Assuming you have a custom hook for login
+  const { handleComingSoon } = useComingSoon();
 
   return (
     <div className="flex items-center justify-center container my-20">
@@ -60,9 +62,7 @@ export default function Login() {
             </button>
 
             <button
-              onClick={() => {
-                /* Apple login */
-              }}
+              onClick={handleComingSoon}
               className="w-full py-3 border border-gray-700 hover:border-gray-500 rounded-full font-medium text-gray-300 flex items-center justify-center gap-3"
             >
               <SiApple />
@@ -127,9 +127,7 @@ export default function Login() {
               </button>
 
               <button
-                onClick={() => {
-                  /* Apple login */
-                }}
+                onClick={handleComingSoon}
                 className="w-full py-3 border border-gray-700 hover:border-gray-500 rounded-full flex items-center justify-center gap-3 text-gray-300"
               >
                 <SiApple />

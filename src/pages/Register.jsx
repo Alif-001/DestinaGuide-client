@@ -4,12 +4,16 @@ import { FcGoogle } from "react-icons/fc";
 import { SiApple } from "react-icons/si";
 
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import logo from "../assets/images/LOGO.png";
 import { useRegister } from "../utils/useRegister";
+import useComingSoon from "../hooks/useComingSoon";
 
 export default function Register() {
   const [method, setMethod] = useState("initial"); // 'initial' | 'email'
   const { formErrors, handleRegister } = useRegister();
+
+  const {handleComingSoon} = useComingSoon()
 
   return (
     <div className=" flex  items-center justify-center  container my-20 ">
@@ -63,9 +67,7 @@ export default function Register() {
             </button>
 
             <button
-              onClick={() => {
-                /* Apple signup */
-              }}
+              onClick={handleComingSoon}
               className="w-full py-3 border border-gray-700 hover:border-gray-500 rounded-full font-medium text-gray-300 flex items-center justify-center gap-3"
             >
               <SiApple />
@@ -156,9 +158,7 @@ export default function Register() {
               </button>
 
               <button
-                onClick={() => {
-                  /* Apple signup */
-                }}
+                onClick={handleComingSoon}
                 className="w-full py-3 border border-gray-700 hover:border-gray-500 rounded-full flex items-center justify-center gap-3 text-gray-300"
               >
                 <SiApple />
