@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  handleChange as createChangeHandler,
+  handleSubmit as createSubmitHandler,
+} from "../utils/handlers/touristSpotHandlers";
 
 export default function AddTouristSpot() {
   const navigate = useNavigate();
+
   const user = { displayName: "John Doe", email: "text@test.com" };
+
   const [formData, setFormData] = useState({
     image: "",
     spotName: "",
@@ -18,70 +24,13 @@ export default function AddTouristSpot() {
     visitorsPerYear: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const isValidImageUrl = (url) =>
-    /^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
-
-  const validateFormData = () => {
-    for (let key in formData) {
-      if (!formData[key]) {
-        toast.error(`Please fill the ${key} field!`);
-        return false;
-      }
-    }
-    if (!isValidImageUrl(formData.image)) {
-      toast.error("Please provide a valid image URL (jpg, png, etc).");
-      return false;
-    }
-    return true;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateFormData()) return;
-
-    const payload = {
-      ...formData,
-      averageCost: parseFloat(formData.averageCost),
-      visitorsPerYear: parseInt(formData.visitorsPerYear, 10),
-      addedBy: { name: user.displayName || "Anonymous", email: user.email },
-    };
-
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/tourist-spots`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
-      if (!response.ok) throw new Error("Network response was not ok");
-
-      toast.success("🎉 Tourist spot added successfully!", {
-        autoClose: 1500, // Toast closes after 1.5 seconds
-        onClose: () => navigate("/my-list"), // Navigate only after toast disappears
-      });
-      setFormData({
-        image: "",
-        spotName: "",
-        country: "",
-        location: "",
-        description: "",
-        averageCost: "",
-        season: "",
-        travelTime: "",
-        visitorsPerYear: "",
-      });
-    } catch (err) {
-      console.error(err);
-      toast.error("❌ Failed to add spot. Try again later.");
-    }
-  };
+  const handleChange = createChangeHandler(setFormData);
+  const handleSubmit = createSubmitHandler({
+    formData,
+    user,
+    setFormData,
+    navigate,
+  });
 
   return (
     <div className="flex  items-center justify-center  container my-20">

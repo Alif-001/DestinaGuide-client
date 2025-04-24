@@ -4,8 +4,8 @@ import { SiApple } from "react-icons/si";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/LOGO.png";
 import useComingSoon from "../hooks/useComingSoon";
-import useLogin from "../utils/useLogin";
-import useGoogleAuth from "../utils/useGoogleAuth";
+import useLogin from "../utils/auth/useLogin";
+import useGoogleAuth from "../utils/auth/useGoogleAuth";
 
 export default function Login() {
   const [method, setMethod] = useState("initial"); // 'initial' | 'email'

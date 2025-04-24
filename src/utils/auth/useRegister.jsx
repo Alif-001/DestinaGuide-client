@@ -3,7 +3,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 import { useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 export function useRegister() {
   const [formErrors, setFormErrors] = useState({

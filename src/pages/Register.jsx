@@ -6,8 +6,8 @@ import { SiApple } from "react-icons/si";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/LOGO.png";
 import useComingSoon from "../hooks/useComingSoon";
-import useGoogleAuth from "../utils/useGoogleAuth";
-import { useRegister } from "../utils/useRegister";
+import useGoogleAuth from "../utils/auth/useGoogleAuth";
+import { useRegister } from "../utils/auth/useRegister";
 
 export default function Register() {
   const [method, setMethod] = useState("initial"); // 'initial' | 'email'

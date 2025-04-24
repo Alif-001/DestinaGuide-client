@@ -1,20 +1,26 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import TouristSpotCard from "../components/TouristSpotCard";
+import axios from "../services/axios/axios";
+import api from "../services/axios/axios";
 
 export const loader = async () => {
-  const response = await fetch(
-    `${import.meta.env.VITE_REACT_APP_API_URL}/tourist-spots`
-  );
-  const data = await response.json();
-  return data;
+  try {
+    const response = await api.get(`/tourist-spots`);
+
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.error("Failed to load tourist spots:", error);
+    throw new Error("Could not fetch tourist spots data");
+  }
 };
 
 const AllTouristSpots = () => {
   const touristSpots = useLoaderData();
 
   return (
-    <div className="px-4 py-8">
+    <div className="px-4 py-8 w-full">
       <h1 className="text-4xl font-bold text-center text-gray-300 mb-12">
         All Tourist Spots
       </h1>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const useLogin = () => {
   const { loginUser } = useAuth();
@@ -18,8 +18,6 @@ const useLogin = () => {
     const { email, password } = e.target;
 
     setFormErrors({ email: "", password: "", nickname: "" });
-
-    
 
     try {
       const userCredential = await loginUser(email.value, password.value);
