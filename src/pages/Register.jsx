@@ -4,16 +4,16 @@ import { FcGoogle } from "react-icons/fc";
 import { SiApple } from "react-icons/si";
 
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 import logo from "../assets/images/LOGO.png";
-import { useRegister } from "../utils/useRegister";
 import useComingSoon from "../hooks/useComingSoon";
+import useGoogleAuth from "../utils/useGoogleAuth";
+import { useRegister } from "../utils/useRegister";
 
 export default function Register() {
   const [method, setMethod] = useState("initial"); // 'initial' | 'email'
   const { formErrors, handleRegister } = useRegister();
-
-  const {handleComingSoon} = useComingSoon()
+  const { handleGoogleSignIn } = useGoogleAuth();
+  const { handleComingSoon } = useComingSoon();
 
   return (
     <div className=" flex  items-center justify-center  container my-20 ">
@@ -38,9 +38,7 @@ export default function Register() {
         {method === "initial" && (
           <div className="space-y-4">
             <button
-              onClick={() => {
-                /* Google signup */
-              }}
+              onClick={handleGoogleSignIn}
               className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-full flex items-center justify-center gap-3"
             >
               {" "}
@@ -146,9 +144,7 @@ export default function Register() {
 
             <div className="space-y-5">
               <button
-                onClick={() => {
-                  /* Google signup */
-                }}
+                onClick={handleGoogleSignIn}
                 className="w-full py-3 border border-gray-700 hover:border-purple-400 rounded-full flex items-center justify-center gap-3 text-gray-300"
               >
                 <div className="bg-white rounded-full p-1">

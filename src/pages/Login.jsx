@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import logo from "../assets/images/LOGO.png";
 import useComingSoon from "../hooks/useComingSoon";
 import useLogin from "../utils/useLogin";
+import useGoogleAuth from "../utils/useGoogleAuth";
 
 export default function Login() {
   const [method, setMethod] = useState("initial"); // 'initial' | 'email'
   const { handleLogin, formErrors } = useLogin(); // Assuming you have a custom hook for login
+  const { handleGoogleSignIn } = useGoogleAuth(); // Assuming you have a custom hook for Google login
   const { handleComingSoon } = useComingSoon();
 
   return (
@@ -34,9 +36,7 @@ export default function Login() {
         {method === "initial" && (
           <div className="space-y-4">
             <button
-              onClick={() => {
-                /* Google login */
-              }}
+              onClick={handleGoogleSignIn}
               className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-full flex items-center justify-center gap-3"
             >
               <div className="bg-white rounded-full p-1">
@@ -115,9 +115,7 @@ export default function Login() {
 
             <div className="space-y-5">
               <button
-                onClick={() => {
-                  /* Google login */
-                }}
+                onClick={handleGoogleSignIn}
                 className="w-full py-3 border border-gray-700 hover:border-purple-400 rounded-full flex items-center justify-center gap-3 text-gray-300"
               >
                 <div className="bg-white rounded-full p-1">
