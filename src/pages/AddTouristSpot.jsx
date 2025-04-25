@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import useAuth from "../utils/auth/useAuth";
 import {
   handleChange as createChangeHandler,
   handleSubmit as createSubmitHandler,
@@ -10,7 +12,7 @@ import {
 export default function AddTouristSpot() {
   const navigate = useNavigate();
 
-  const user = { displayName: "John Doe", email: "text@test.com" };
+  const { user } = useAuth();
 
   const [formData, setFormData] = useState({
     image: "",

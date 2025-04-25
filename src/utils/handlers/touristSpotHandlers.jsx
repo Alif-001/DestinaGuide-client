@@ -47,6 +47,7 @@ export const handleSubmit =
       addedBy: {
         name: user.displayName || "Anonymous",
         email: user.email,
+        uId: user.uid,
       },
     };
 

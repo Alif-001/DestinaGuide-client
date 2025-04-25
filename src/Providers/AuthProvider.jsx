@@ -7,8 +7,10 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
+import api from "../services/axios/axios";
 import { auth } from "../services/firebase/firebase.config";
 
 export const AuthContext = createContext(null);
@@ -25,13 +27,16 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  const updateUserProfile = (updatedData) => {
+    return updateProfile(auth.currentUser, updatedData);
+  };
+
   // create users using google sign in
 
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
-
   // login user using email and password
 
   const loginUser = (email, password) => {
@@ -49,19 +54,40 @@ const AuthProvider = ({ children }) => {
   //  observe user state change
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setUser(user);
       setLoading(false);
+
+      if (user) {
+        try {
+          // Wait for displayName to be set
+          const waitForName = async () => {
+            while (!user.displayName) {
+              await user.reload();
+              await new Promise((res) => setTimeout(res, 200));
+            }
+          };
+
+          await waitForName();
+
+          const { uid, displayName: name, email, photoURL: photo } = user;
+          await api.post("/users", { uid, name, email, photo });
+          console.log("✅ Synced after name arrived:", name);
+        } catch (error) {
+          console.error("Error syncing user data:", error);
+        }
+      }
     });
-    return () => {
-      unsubscribe();
-    };
+
+    return () => unsubscribe();
   }, []);
 
   const authInfo = {
     user,
+    setUser,
     loading,
     createNewUser,
+    updateUserProfile,
     googleSignIn,
     loginUser,
     logOut,

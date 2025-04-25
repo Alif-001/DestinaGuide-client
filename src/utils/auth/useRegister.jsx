@@ -3,7 +3,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "./useAuth";
 
 export function useRegister() {
   const [formErrors, setFormErrors] = useState({
@@ -11,7 +11,7 @@ export function useRegister() {
     password: "",
     nickname: "",
   });
-  const { createNewUser } = useAuth();
+  const { createNewUser, updateUserProfile, setUser } = useAuth();
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -44,7 +44,12 @@ export function useRegister() {
 
     try {
       const userCredential = await createNewUser(email.value, password.value);
-      console.log(userCredential.user);
+     
+
+      // Update profile on that user object
+      await updateUserProfile({
+        displayName: nickname.value,
+      });
 
       // Success alert
       Swal.fire({

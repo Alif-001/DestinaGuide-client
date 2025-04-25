@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../auth/useAuth";
 
 const useLogin = () => {
   const { loginUser } = useAuth();
