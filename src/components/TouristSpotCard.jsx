@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const TouristSpotCard = ({
   spot,
@@ -8,6 +9,7 @@ const TouristSpotCard = ({
   onViewDetails,
 }) => {
   const {
+    _id: id,
     image,
     spotName,
     country,
@@ -62,12 +64,13 @@ const TouristSpotCard = ({
             >
               ✏️ Update
             </button>
-            <button
+            <Link
+              to={`/tourist-spots/${id}`}
               className="btn btn-primary text-white font-bold flex-grow w-full min-w-[150px] py-3 transform transition-transform duration-200 ease-in-out hover:scale-105 active:scale-95"
               onClick={onViewDetails}
             >
               🔍 View Details
-            </button>
+            </Link>
             <button
               className="btn btn-error text-white font-bold flex-grow w-full min-w-[150px] py-3 transform transition-transform duration-200 ease-in-out hover:scale-105 active:scale-95"
               onClick={onDelete}

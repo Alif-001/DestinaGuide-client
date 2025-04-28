@@ -35,7 +35,7 @@ const useHandleDelete = (spots, setSpots) => {
 
     try {
       const res = await api.delete(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/tourist-spots/${id}`
+        `/tourist-spots/${id}`
       );
 
       if (res.status === 200 && res.data.deletedCount > 0) {

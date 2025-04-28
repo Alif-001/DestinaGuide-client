@@ -2,15 +2,18 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Layout from "../layout/layout";
-import AllTouristSpots,{loader as allTouristSpotsLoader} from "../pages/AllTouristSpots";
-import Home from "../pages/Home";
-import NotFound from "../pages/NotFound";
-import Login from "../pages/Login";
-import ViewDetails from "../pages/ViewDetails";
 import AddTouristSpot from "../pages/AddTouristSpot";
-import MyList,{loader as myListLoader} from "../pages/MyList";
+import AllTouristSpots, {
+  loader as allTouristSpotsLoader,
+} from "../pages/AllTouristSpots";
+
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import MyList, { loader as myListLoader } from "../pages/MyList";
+import NotFound from "../pages/NotFound";
 import Register from "../pages/Register";
 import UpdateTouristSpot from "../pages/UpdateTouristSpot";
+import ViewDetails, { loader as viewDetailsLoader } from "../pages/ViewDetails";
 
 const Routes = createBrowserRouter([
   {
@@ -41,6 +44,7 @@ const Routes = createBrowserRouter([
       {
         path: "tourist-spots/:id", // 👈 Custom route
         element: <ViewDetails />,
+        loader: viewDetailsLoader,
       },
       {
         path: "add-tourist-spot", // 👈 Custom route

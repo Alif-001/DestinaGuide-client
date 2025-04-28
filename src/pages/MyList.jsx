@@ -12,7 +12,7 @@ export const loader = async ({ params }) => {
 
   try {
     const response = await api.get(
-      `${import.meta.env.VITE_REACT_APP_API_URL}/${id}/my-list`
+      `/${id}/my-list`
     );
     return response.data;
   } catch (error) {
