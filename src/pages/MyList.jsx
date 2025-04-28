@@ -11,9 +11,7 @@ export const loader = async ({ params }) => {
   const { id } = params; // UID from route
 
   try {
-    const response = await api.get(
-      `/${id}/my-list`
-    );
+    const response = await api.get(`/${id}/my-list`);
     return response.data;
   } catch (error) {
     console.error("Error fetching tourist spots:", error);
@@ -64,6 +62,7 @@ const MyList = () => {
             isOwner={true} // ← flag indicating “my spot”
             onEdit={() => handleEdit(spot)}
             onDelete={() => handleDelete(spot._id)}
+            onViewDetails={() => {}}
           />
         ))}
       </div>

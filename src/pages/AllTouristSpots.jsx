@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import TouristSpotCard from "../components/TouristSpotCard";
 import api from "../services/axios/axios";
 
@@ -17,6 +17,12 @@ export const loader = async () => {
 
 const AllTouristSpots = () => {
   const touristSpots = useLoaderData();
+
+  const navigate = useNavigate();
+
+  function handleView(_id) {
+    navigate(`/tourist-spots/${_id}`);
+  }
 
   return (
     <div className="px-4 py-8 w-full">

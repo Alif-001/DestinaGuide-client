@@ -51,7 +51,7 @@ const Routes = createBrowserRouter([
         element: <AddTouristSpot />,
       },
       {
-        path: "add-tourist-spot", // 👈 Custom route
+        path: "update-tourist-spot", // 👈 Custom route
         element: <UpdateTouristSpot />,
       },
       {

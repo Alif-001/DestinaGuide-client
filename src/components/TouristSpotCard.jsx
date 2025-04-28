@@ -67,7 +67,7 @@ const TouristSpotCard = ({
             <Link
               to={`/tourist-spots/${id}`}
               className="btn btn-primary text-white font-bold flex-grow w-full min-w-[150px] py-3 transform transition-transform duration-200 ease-in-out hover:scale-105 active:scale-95"
-              onClick={onViewDetails}
+              // onClick={onViewDetails}
             >
               🔍 View Details
             </Link>
