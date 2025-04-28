@@ -1,6 +1,12 @@
 import React from "react";
 
-const TouristSpotCard = ({ spot }) => {
+const TouristSpotCard = ({
+  spot,
+  isOwner = false,
+  onEdit,
+  onDelete,
+  onViewDetails,
+}) => {
   const {
     image,
     spotName,
@@ -41,6 +47,53 @@ const TouristSpotCard = ({ spot }) => {
               👥 <span>{visitorsPerYear.toLocaleString()} visitors</span>
             </div>
           </div>
+        </div>
+        <div className="mt-4 flex space-x-2 justify-around items-center mb-4">
+          {isOwner ? (
+            <>
+              <button
+                className="
+          btn btn-secondary text-white font-bold
+          transform transition-transform duration-200 ease-in-out
+          hover:scale-105 active:scale-95
+        "
+                onClick={onEdit}
+              >
+                ✏️ Update
+              </button>
+              <button
+                className="
+          btn btn-primary text-white font-bold
+          transform transition-transform duration-200 ease-in-out
+          hover:scale-105 active:scale-95
+        "
+                onClick={onViewDetails}
+              >
+                🔍 View Details
+              </button>
+              <button
+                className="
+          btn btn-error text-white font-bold
+          transform transition-transform duration-200 ease-in-out
+          hover:scale-105 active:scale-95
+        "
+                onClick={onDelete}
+              >
+                🗑️ Delete
+              </button>
+            </>
+          ) : (
+            <button
+              className="
+        btn btn-primary text-white font-bold
+        transform transition-transform duration-200 ease-in-out
+        hover:scale-105 active:scale-95
+      "
+              onClick={onViewDetails}
+            >
+              🔍 View Details
+            </button>
+          )}
         </div>
       </div>
     </>

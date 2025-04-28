@@ -4,6 +4,7 @@ import useAuth from "../utils/auth/useAuth";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
+  console.log(user);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -48,7 +49,7 @@ const NavBar = () => {
     ? [
         ...commonLinks,
         { to: "/add-tourist-spot", label: "Add Tourist Spot" },
-        { to: "/my-list", label: "My List" },
+        { to: `/${user.uid}/my-list`, label: "My List" },
       ]
     : [
         ...commonLinks,

@@ -86,7 +86,7 @@ export const handleSubmit =
         if (result.isConfirmed) {
           // Stay on the form to add more
         } else if (result.isDenied) {
-          navigate("/my-list");
+          navigate(`/${user.uid}/my-list`);
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           navigate("/");
         }

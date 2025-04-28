@@ -8,7 +8,7 @@ import NotFound from "../pages/NotFound";
 import Login from "../pages/Login";
 import ViewDetails from "../pages/ViewDetails";
 import AddTouristSpot from "../pages/AddTouristSpot";
-import MyList from "../pages/MyList";
+import MyList,{loader as myListLoader} from "../pages/MyList";
 import Register from "../pages/Register";
 import UpdateTouristSpot from "../pages/UpdateTouristSpot";
 
@@ -51,8 +51,9 @@ const Routes = createBrowserRouter([
         element: <UpdateTouristSpot />,
       },
       {
-        path: "my-list", // 👈 Custom route
+        path: "/:id/my-list", // 👈 Custom route
         element: <MyList />,
+        loader: myListLoader,
       },
     ],
   },

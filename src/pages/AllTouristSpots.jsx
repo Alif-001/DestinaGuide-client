@@ -1,7 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import TouristSpotCard from "../components/TouristSpotCard";
-import axios from "../services/axios/axios";
 import api from "../services/axios/axios";
 
 export const loader = async () => {
@@ -26,7 +25,13 @@ const AllTouristSpots = () => {
       </h1>
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
         {touristSpots.map((spot, index) => (
-          <TouristSpotCard key={spot._id || index} spot={spot} />
+          <TouristSpotCard
+            
+            key={spot._id}
+            spot={spot}
+            isOwner={false} // ← flag indicating “not my spot”
+            onViewDetails={() => handleView(spot._id)}
+          />
         ))}
       </div>
     </div>
