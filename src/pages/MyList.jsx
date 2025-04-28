@@ -27,7 +27,7 @@ const MyList = () => {
   const navigate = useNavigate();
 
   const handleEdit = (id) => {
-    navigate(`/update-spot/${id}`);
+    navigate(`/update-tourist-spot/${id}`);
   };
 
   const handleDelete = useHandleDelete(spots, setSpots);
@@ -60,7 +60,7 @@ const MyList = () => {
             key={spot._id}
             spot={spot}
             isOwner={true} // ← flag indicating “my spot”
-            onEdit={() => handleEdit(spot)}
+            onEdit={() => handleEdit(spot._id)}
             onDelete={() => handleDelete(spot._id)}
             onViewDetails={() => {}}
           />

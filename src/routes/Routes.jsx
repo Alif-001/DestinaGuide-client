@@ -12,7 +12,9 @@ import Login from "../pages/Login";
 import MyList, { loader as myListLoader } from "../pages/MyList";
 import NotFound from "../pages/NotFound";
 import Register from "../pages/Register";
-import UpdateTouristSpot from "../pages/UpdateTouristSpot";
+import UpdateTouristSpot, {
+  loader as updateTouristSpotLoader,
+} from "../pages/UpdateTouristSpot";
 import ViewDetails, { loader as viewDetailsLoader } from "../pages/ViewDetails";
 
 const Routes = createBrowserRouter([
@@ -51,8 +53,9 @@ const Routes = createBrowserRouter([
         element: <AddTouristSpot />,
       },
       {
-        path: "update-tourist-spot", // 👈 Custom route
+        path: "update-tourist-spot/:id", // 👈 Custom route
         element: <UpdateTouristSpot />,
+        loader: updateTouristSpotLoader,
       },
       {
         path: "/:id/my-list", // 👈 Custom route
