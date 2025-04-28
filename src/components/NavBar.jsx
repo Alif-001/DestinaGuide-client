@@ -101,7 +101,7 @@ const NavBar = () => {
       </div>
 
       {/* Desktop links */}
-      <div className=" navbar-end hidden lg:flex">
+      <div className=" navbar-end hidden lg:flex lg:justify-center">
         <ul className="menu menu-horizontal px-1">
           {authLinks.map(({ to, label }) => (
             <li key={to}>
