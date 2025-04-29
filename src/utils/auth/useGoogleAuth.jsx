@@ -1,19 +1,44 @@
+// src/utils/auth/useGoogleAuth.js
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "./useAuth";
 
 const useGoogleAuth = () => {
-  const { googleSignIn } = useAuth(); // Assuming you have a custom hook for authentication
+  const { user, googleSignIn, loading, setLoading } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || "/";
+
+  useEffect(() => {
+    if (!loading && user) {
+      navigate(from, { replace: true });
+    }
+  }, [loading, user, from, navigate]);
 
   const handleGoogleSignIn = async () => {
     try {
-      const result = await googleSignIn();
-      const user = result.user;
-      console.log("User signed in:", user);
-      // Handle successful sign-in (e.g., redirect, show success message)
+      await googleSignIn();
+      // triggers loading → then user update
+      setLoading(false);
     } catch (error) {
-      console.error("Error signing in with Google:", error);
-      // Handle sign-in error (e.g., show error message)
+      console.error("Google sign-in error:", error);
+      if (error) {
+        setLoading(false);
+        Swal.fire({
+          title: "Error",
+          text: error.code,
+          icon: "error",
+          background: "#1e1e1e",
+          color: "#fff",
+          confirmButtonColor: "#d33",
+          confirmButtonText: "Try Again",
+          customClass: { popup: "swal2-dark" },
+        });
+      }
     }
   };
+
   return { handleGoogleSignIn };
 };
 

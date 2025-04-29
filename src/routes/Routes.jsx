@@ -16,6 +16,7 @@ import UpdateTouristSpot, {
   loader as updateTouristSpotLoader,
 } from "../pages/UpdateTouristSpot";
 import ViewDetails, { loader as viewDetailsLoader } from "../pages/ViewDetails";
+import PrivateRoute, { PublicRoute } from "./AuthGuards";
 
 const Routes = createBrowserRouter([
   {
@@ -32,34 +33,62 @@ const Routes = createBrowserRouter([
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        ),
       },
       {
         path: "register",
-        element: <Register />,
+        element: (
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        ),
       },
       {
         path: "tourist-spots", // 👈 Custom route
-        element: <AllTouristSpots />,
+        element: (
+        
+            <AllTouristSpots />
+         
+        ),
         loader: allTouristSpotsLoader,
       },
       {
         path: "tourist-spots/:id", // 👈 Custom route
-        element: <ViewDetails />,
+        element: (
+          <PrivateRoute>
+            <ViewDetails />
+          </PrivateRoute>
+        ),
         loader: viewDetailsLoader,
       },
       {
         path: "add-tourist-spot", // 👈 Custom route
-        element: <AddTouristSpot />,
+        element: (
+          <PrivateRoute>
+            <AddTouristSpot />
+          </PrivateRoute>
+        ),
       },
       {
         path: "update-tourist-spot/:id", // 👈 Custom route
-        element: <UpdateTouristSpot />,
+        element: (
+          <PrivateRoute>
+            <UpdateTouristSpot />
+          </PrivateRoute>
+        ),
         loader: updateTouristSpotLoader,
       },
       {
         path: "/:id/my-list", // 👈 Custom route
-        element: <MyList />,
+        element: (
+          <PrivateRoute>
+            <MyList />
+          </PrivateRoute>
+        ),
         loader: myListLoader,
       },
     ],

@@ -11,7 +11,7 @@ export function useRegister() {
     password: "",
     nickname: "",
   });
-  const { createNewUser, updateUserProfile, setUser } = useAuth();
+  const { createNewUser, updateUserProfile, setLoading } = useAuth();
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -79,7 +79,9 @@ export function useRegister() {
         confirmButtonColor: "#d33",
         confirmButtonText: "Try Again",
         customClass: { popup: "swal2-dark" },
-      });
+      }.then(() => {
+       setLoading(false);
+      }));
     }
   };
 

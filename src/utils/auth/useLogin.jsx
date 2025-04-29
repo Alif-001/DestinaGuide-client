@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../auth/useAuth";
 
 const useLogin = () => {
-  const { loginUser } = useAuth();
+  const { loginUser,setLoading } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const from = location.state?.from || "/";
+
   const [formErrors, setFormErrors] = useState({
     email: "",
     password: "",
@@ -36,7 +40,7 @@ const useLogin = () => {
       }).then((res) => {
         if (res.isConfirmed) {
           e.target.reset();
-          navigate("/", { replace: true });
+          navigate(from, { replace: true });
         }
       });
     } catch (error) {
@@ -51,6 +55,8 @@ const useLogin = () => {
         confirmButtonColor: "#d33",
         confirmButtonText: "Try Again",
         customClass: { popup: "swal2-dark" },
+      }).then(() =>{
+        setLoading(false)
       });
     }
   };

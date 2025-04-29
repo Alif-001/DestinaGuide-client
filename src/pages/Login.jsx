@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { SiApple } from "react-icons/si";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/LOGO.png";
 import useComingSoon from "../hooks/useComingSoon";
-import useLogin from "../utils/auth/useLogin";
 import useGoogleAuth from "../utils/auth/useGoogleAuth";
+import useLogin from "../utils/auth/useLogin";
+
+export const loader = async ({ request }) => {
+  console.log(request);
+};
 
 export default function Login() {
   const [method, setMethod] = useState("initial"); // 'initial' | 'email'
   const { handleLogin, formErrors } = useLogin(); // Assuming you have a custom hook for login
   const { handleGoogleSignIn } = useGoogleAuth(); // Assuming you have a custom hook for Google login
   const { handleComingSoon } = useComingSoon();
+  const location = useLocation();
+  const message = location.state?.message;
 
   return (
     <div className="flex items-center justify-center container my-20">
@@ -31,6 +37,11 @@ export default function Login() {
               Register
             </Link>
           </p>
+          {message && (
+            <div className="text-sm text-red-400 bg-yellow-900 px-4 py-2 mt-4 rounded-md shadow">
+              ⚠️ {message}
+            </div>
+          )}
         </div>
 
         {method === "initial" && (

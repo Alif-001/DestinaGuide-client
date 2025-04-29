@@ -56,7 +56,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
-      setLoading(false);
 
       if (user) {
         try {
@@ -77,15 +76,23 @@ const AuthProvider = ({ children }) => {
           console.error("Error syncing user data:", error);
         }
       }
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (!loading && !user) {
+      setLoading(false); // Ensure loading is false when there is an error
+    }
+  }, [loading, user]);
+
   const authInfo = {
     user,
     setUser,
     loading,
+    setLoading,
     createNewUser,
     updateUserProfile,
     googleSignIn,
