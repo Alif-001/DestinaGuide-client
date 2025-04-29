@@ -8,6 +8,7 @@ import AllTouristSpots, {
 } from "../pages/AllTouristSpots";
 
 import Home from "../pages/Home";
+import { loader as matchedCountryLoader } from "../components/MatchedCountrySpots"; 
 import Login from "../pages/Login";
 import MyList, { loader as myListLoader } from "../pages/MyList";
 import NotFound from "../pages/NotFound";
@@ -28,7 +29,7 @@ const Routes = createBrowserRouter([
         path: "/", // 👈 App is at /home
         element: <App />,
         children: [
-          { index: true, element: <Home /> }, // 👈 Home is at /home
+          { index: true, element: <Home />, loader: matchedCountryLoader }, // 👈 Home is at /home
         ],
       },
       {
@@ -49,11 +50,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: "tourist-spots", // 👈 Custom route
-        element: (
-        
-            <AllTouristSpots />
-         
-        ),
+        element: <AllTouristSpots />,
         loader: allTouristSpotsLoader,
       },
       {

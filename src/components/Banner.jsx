@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
@@ -68,9 +69,12 @@ const BannerCarousel = () => {
                 <p className="mt-3 text-lg md:text-xl text-white/90">
                   {slide.subtitle}
                 </p>
-                <button className="mt-6 px-6 py-2 bg-white text-black font-semibold rounded-md hover:bg-gray-600 hover:text-white transform hover:scale-105 active:scale-95 transition duration-200 ease-in-out">
+                <Link
+                  to={"/tourist-spots/"}
+                  className="mt-6 px-6 py-2 bg-white text-black font-semibold rounded-md hover:bg-gray-600 hover:text-white transform hover:scale-105 active:scale-95 transition duration-200 ease-in-out"
+                >
                   Explore More
-                </button>
+                </Link>
               </div>
             </div>
           </SwiperSlide>
