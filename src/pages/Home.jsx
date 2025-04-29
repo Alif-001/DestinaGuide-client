@@ -1,23 +1,23 @@
 import React from "react";
 import BannerCarousel from "../components/Banner";
-
 import MatchedCountrySpots from "../components/MatchedCountrySpots";
+import NewsletterSignup from "../components/NewsletterSignup";
 import Testimonials from "../components/Testimonials";
 import TravelTips from "../components/TravelTips";
-import NewsletterSignup from "../components/NewsletterSignup";
 
 const Home = () => {
   return (
-    <>
+    <div
+      style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}
+    >
       <BannerCarousel />
-      <div className="home  rounded-2xl  bg-gray-800 p-4 my-10">
-        
+      <div className="home rounded-2xl p-4 my-10">
         <MatchedCountrySpots />
-        <Testimonials></Testimonials>
-        <TravelTips/>
-        <NewsletterSignup></NewsletterSignup>
+        <Testimonials />
+        <TravelTips />
+        <NewsletterSignup />
       </div>
-    </>
+    </div>
   );
 };
 

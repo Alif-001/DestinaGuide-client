@@ -2,7 +2,14 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-4 bg-neutral text-neutral-content  bottom-0 left-0 w-full ">
+    <footer
+      className="footer footer-center p-4"
+      style={{
+        backgroundColor: "var(--card-bg-color)",
+        color: "var(--text-color)",
+        borderTop: "1px solid var(--border-color)",
+      }}
+    >
       <div>
         <h2 className="font-bold text-xl">Destinaguide</h2>
         <p className="text-sm">Your ultimate tourism guide.</p>

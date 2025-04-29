@@ -17,14 +17,20 @@ export default function Register() {
 
   return (
     <div className=" flex  items-center justify-center  container my-20 ">
-      <div className="unique-form-size p-20 bg-neutral-900 rounded-3xl shadow-2xl text-center animate-fade-in">
+      <div
+        className="unique-form-size p-20 rounded-3xl shadow-2xl text-center animate-fade-in"
+        style={{
+          backgroundColor: "var(--card-bg-color)",
+          color: "var(--text-color)",
+        }}
+      >
         <div className="mb-5">
           <img
             src={logo}
             alt="Destinaguide"
             className="mx-auto w-20 h-20 object-contain"
           />
-          <h2 className="text-2xl font-bold text-gray-100">
+          <h2 className="text-2xl font-bold text-gray-400">
             Destina<span className="font-bold text-purple-400">Guide</span>
           </h2>
           <p className="text-sm text-gray-400 mt-1">

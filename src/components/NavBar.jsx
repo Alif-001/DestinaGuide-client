@@ -1,11 +1,20 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../utils/auth/useAuth";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
-  console.log(user);
   const navigate = useNavigate();
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
 
   const handleLogout = async () => {
     try {
@@ -16,30 +25,6 @@ const NavBar = () => {
     }
   };
 
-  // const links = (
-  //   <>
-  //     <li>
-  //       <Link to="/">Home</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/tourist-spots">All Tourist Spots</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/add-tourist-spot">Add Tourist Spot</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/my-list">My List</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/login">Login</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/register">Register</Link>
-  //     </li>
-  //   </>
-  // );
-
-  // Define links based on auth state
   const commonLinks = [
     { to: "/", label: "Home" },
     { to: "/tourist-spots", label: "All Tourist Spots" },
@@ -58,9 +43,14 @@ const NavBar = () => {
       ];
 
   return (
-    <div className="navbar bg-base-100 shadow-sm container">
+    <div
+      className="navbar bg-base-100 shadow-sm container"
+      style={{
+        backgroundColor: "var(--card-bg-color)",
+        color: "var(--text-color)",
+      }}
+    >
       <div className="navbar-start">
-        {/* Mobile dropdown */}
         <div className="dropdown">
           <button
             tabIndex={0}
@@ -88,40 +78,54 @@ const NavBar = () => {
           >
             {authLinks.map(({ to, label }) => (
               <li key={to}>
-                <Link to={to}>{label}</Link>
+                <NavLink
+                  to={to}
+                  className={({ isActive }) =>
+                    isActive ? "text-primary font-bold" : ""
+                  }
+                >
+                  {label}
+                </NavLink>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Brand */}
         <Link to="/" className="btn btn-ghost text-xl">
           DestinaGuide
         </Link>
       </div>
 
-      {/* Desktop links */}
-      <div className=" navbar-end hidden lg:flex lg:justify-center">
+      <div className="navbar-center hidden lg:flex lg:justify-center">
         <ul className="menu menu-horizontal px-1">
           {authLinks.map(({ to, label }) => (
             <li key={to}>
-              <Link to={to}>{label}</Link>
+              <NavLink
+                to={to}
+                className={({ isActive }) =>
+                  isActive ? "text-primary font-bold" : ""
+                }
+              >
+                {label}
+              </NavLink>
             </li>
           ))}
         </ul>
       </div>
 
-      {/* Logout button if authenticated */}
-      {user && (
-        <div className="navbar-end">
+      <div className="navbar-end flex items-center gap-4">
+        <button className="btn btn-outline" onClick={toggleTheme}>
+          {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+        </button>
+        {user && (
           <button
             className="btn btn-error text-white font-bold"
             onClick={handleLogout}
           >
             Logout
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -35,7 +35,7 @@ export default function ViewDetails() {
 
   return (
     <div className="flex card mx-auto items-center">
-      <div className="my-40 text-gray-300 p-6 flex flex-col max-w-5xl">
+      <div className="my-20 text-gray-300 p-6 flex flex-col max-w-5xl">
         {/* Image */}
         <div
           className="w-full overflow-hidden rounded-3xl shadow-lg"
@@ -53,7 +53,7 @@ export default function ViewDetails() {
 
         {/* Info */}
         <div
-          className="w-full card-body bg-gray-800/60 p-8 shadow-2xl
+          className="w-full card-body  p-8 shadow-2xl
                      space-y-6 backdrop-blur-lg break-words whitespace-normal"
         >
           <h1 className="text-4xl font-extrabold text-center">{spotName}</h1>

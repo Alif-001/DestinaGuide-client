@@ -67,7 +67,10 @@ export default function UpdateTouristSpot() {
   });
 
   return (
-    <div className="flex  items-center justify-center  container my-20">
+    <div
+      className="flex items-center justify-center container my-20"
+      style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}
+    >
       <div className=" max-w-3xl mx-auto m-8  p-10 bg-neutral-900 text-white rounded-2xl shadow-md mt-8">
         <h1 className="text-2xl font-bold mb-4">Update Tourist Spot 🌍</h1>
         <form onSubmit={handleSubmit} className=" space-y-4">
