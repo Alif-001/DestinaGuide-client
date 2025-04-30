@@ -33,7 +33,9 @@ export default function PrivateRoute({ children }) {
 }
 
 export function PublicRoute({ children }) {
-  const { user, loading } = useAuth();
+  const { user, loading } = useAuth();const location = useLocation();
+
+   const from = location.state?.from || "/";
 
   if (loading) {
     document.body.style.overflow = "hidden"; // Prevent scrolling during loading
@@ -49,7 +51,7 @@ export function PublicRoute({ children }) {
   }
 
   if (user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={from} replace />;
   }
 
   return children;

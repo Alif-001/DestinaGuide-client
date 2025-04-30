@@ -18,6 +18,7 @@ export default function Login() {
   const { handleComingSoon } = useComingSoon();
   const location = useLocation();
   const message = location.state?.message;
+  
 
   return (
     <div className="flex items-center justify-center container my-20">
