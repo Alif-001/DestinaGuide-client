@@ -11,7 +11,9 @@ const Footer = () => {
       }}
     >
       <div>
-        <h2 className="font-bold text-xl">Destinaguide</h2>
+        <h2 className="text-2xl font-bold text-gray-400">
+          Destina<span className="font-bold text-purple-400">Guide</span>
+        </h2>
         <p className="text-sm">Your ultimate tourism guide.</p>
         <p className="text-sm">
           &copy; {new Date().getFullYear()} Destinaguide. All rights reserved.

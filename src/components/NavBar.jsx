@@ -92,7 +92,9 @@ const NavBar = () => {
         </div>
 
         <Link to="/" className="btn btn-ghost text-xl">
-          DestinaGuide
+          <h2 className="text-2xl font-bold text-gray-400">
+            Destina<span className="font-bold text-purple-400">Guide</span>
+          </h2>
         </Link>
       </div>
 
